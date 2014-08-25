@@ -9,7 +9,6 @@
 namespace andkon\yii2actions\actions\base;
 
 use andkon\yii2actions\ActiveRecord;
-use yii\db\ActiveRecord;
 
 /**
  * Class FindViews
@@ -33,12 +32,10 @@ trait FindViews
 
     /**
      * Определяет какое представление будет использовано для формы
-
      *
-*@param ActiveRecord $model
-
+     * @param ActiveRecord $model
      *
-*@return void
+     * @return void
      */
     private function setFormViewPath($model)
     {
@@ -71,7 +68,7 @@ trait FindViews
         if (file_exists($view . '/' . $actionName . '.php')) {
             $view = $actionName;
         } else {
-            $view = '@app/common/actions/views/' . $actionName;
+            $view = '@vendor/andkon/yii2actions/actions/views/' . $actionName;
             $this->setFormViewPath($model);
         }
 

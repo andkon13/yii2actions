@@ -91,9 +91,9 @@ class Migration extends \yii\db\Migration
             foreach ($rows as $row) {
                 $this->insert($table, $row);
             }
-
-            return true;
         }
+
+        return true;
     }
 
     private function _downKeys()

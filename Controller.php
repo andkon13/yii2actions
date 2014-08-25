@@ -41,11 +41,11 @@ class Controller extends \yii\web\Controller
     public function actions()
     {
         $actions = [
-            'create' => 'app\common\actions\Create',
-            'update' => 'app\common\actions\Update',
-            'index'  => 'app\common\actions\Index',
-            'view'   => 'app\common\actions\View',
-            'delete' => 'app\common\actions\Delete',
+            'create' => 'andkon\yii2actions\actions\Create',
+            'update' => 'andkon\yii2actions\actions\Update',
+            'index'  => 'andkon\yii2actions\actions\Index',
+            'view'   => 'andkon\yii2actions\actions\View',
+            'delete' => 'andkon\yii2actions\actions\Delete',
         ];
 
         return array_merge(parent::actions(), $actions);
