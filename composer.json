@@ -3,6 +3,7 @@
     "description": "override default actions",
     "minimum-stability": "dev",
     "license": "proprietary",
+    "version": "0.1",
     "authors": [
         {
             "name": "Andrey Konenkov",
