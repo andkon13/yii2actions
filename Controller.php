@@ -15,20 +15,27 @@ use yii\web\NotFoundHttpException;
 
 class Controller extends \yii\web\Controller
 {
-    private $_usersAccess = [
-        'users' => ['settings', 'index', 'forget', 'registry'],
-        'site'  => ['index', 'error', 'about', 'logout', 'login'],
-        'cron'  => ['test', 'index'],
-    ];
-
+    /** @var null|string */
     protected $_model = null;
 
+    /**
+     * Инициализация
+     *
+     * @return void
+     */
     public function init()
     {
         parent::init();
         \Yii::$app->params['menu'] = [];
     }
 
+    /**
+     * Возвращает имя модели
+     *
+     * @param bool|string $model_name
+     *
+     * @return bool
+     */
     protected function model($model_name = false)
     {
         if ($model_name) {
@@ -38,6 +45,11 @@ class Controller extends \yii\web\Controller
         return $this->_model;
     }
 
+    /**
+     * Список действий по умолчанию
+     *
+     * @return array
+     */
     public function actions()
     {
         $actions = [
@@ -51,28 +63,30 @@ class Controller extends \yii\web\Controller
         return array_merge(parent::actions(), $actions);
     }
 
+    /**
+     * Триггер перед действием
+     *
+     * @param Action $action
+     *
+     * @return mixed
+     */
     public function beforeAction($action)
     {
         if (in_array($action->id, ['logout', 'delete'])) {
             $this->enableCsrfValidation = false;
         }
 
-        if (parent::beforeAction($action)) {
-            if (!User::isAdmin()) {
-                $ctrId = $action->controller->id;
-                if (isset($this->_usersAccess[$ctrId]) && in_array($action->id, $this->_usersAccess[$ctrId])) {
-                    return true;
-                }
-
-                throw new HttpException('403 - У вас нехватает прав для этого действия');
-            }
-
-            return true;
-        }
-
-        return false;
+        return parent::beforeAction($action);
     }
 
+    /**
+     * Возвращает данные из $_POST
+     *
+     * @param null|string $name
+     * @param bool        $returnIsNull
+     *
+     * @return bool
+     */
     public function getPost($name = null, $returnIsNull = false)
     {
         if ($name == null) {
@@ -87,6 +101,14 @@ class Controller extends \yii\web\Controller
         return $post;
     }
 
+    /**
+     * Возвращает url для данного контроллера
+     *
+     * @param string $view
+     * @param array  $param
+     *
+     * @return mixed
+     */
     public function createUrl($view, $param = array())
     {
         $path  = $this->module->id . '/' . $this->id . '/' . $view;
@@ -110,6 +132,14 @@ class Controller extends \yii\web\Controller
         return $this->_model;
     }
 
+    /**
+     * Возвращает модель по id
+     *
+     * @param $id
+     *
+     * @return ActiveRecord
+     * @throws \yii\web\NotFoundHttpException
+     */
     protected function findModel($id)
     {
         $model = $this->getModelName();
