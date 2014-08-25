@@ -1,0 +1,12 @@
+{
+    "name": "andkon/yii2actions",
+    "description": "override default actions",
+    "minimum-stability": "dev",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Andrey Konenkov",
+            "email": "andkon13@mail.ru"
+        }
+    ]
+}
