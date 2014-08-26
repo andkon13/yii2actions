@@ -3,11 +3,14 @@
 use yii\helpers\Html;
 
 
-/* @var $this yii\web\View */
-/* @var  \andkon\yii2actions\ActiveRecord $model */
-$modelName = Yii::t('app', $model->name);
+/**
+ * @var yii\web\View                     $this
+ * @var \andkon\yii2actions\ActiveRecord $model
+ * @var string                           $formView
+ */
+$modelName = Yii::t('app', $model->formName());
 
-$this->title = 'Update ' . $modelName;
+$this->title = 'Update ' . $model;
 $this->params['breadcrumbs'][] = ['label' => $modelName, 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -16,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?=
-    $this->render('_form', [
+    $this->render($formView, [
         'model' => $model,
     ])
     ?>
