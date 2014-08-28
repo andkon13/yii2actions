@@ -103,8 +103,8 @@ class Migration extends \yii\db\Migration
             $name = $this->getFkName($key);
             $key  = array_merge(['delete' => 'CASCADE', 'update' => 'NO ACTION'], $key);
             $this->addForeignKey(
-                $name, $this->tablesPrefix . $key['from'][0], $key['from'][1],
-                $this->tablesPrefix . $key['to'][0], $key['to'][1],
+                $name, $key['from'][0], $key['from'][1],
+                $key['to'][0], $key['to'][1],
                 $key['delete'], $key['update']
             );
         }
@@ -145,7 +145,7 @@ class Migration extends \yii\db\Migration
 
         foreach ($this->foreignKeys as $key) {
             $name = $this->getFkName($key);
-            $this->dropForeignKey($name, $this->tablesPrefix . $key['from'][0]);
+            $this->dropForeignKey($name, $key['from'][0]);
         }
 
         return true;
