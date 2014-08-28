@@ -8,9 +8,7 @@
 
 namespace andkon\yii2actions;
 
-use app\models\User;
-use Guzzle\Common\Exception\ExceptionCollection;
-use yii\web\HttpException;
+use yii\base\Exception;
 use yii\web\NotFoundHttpException;
 
 class Controller extends \yii\web\Controller
@@ -126,7 +124,7 @@ class Controller extends \yii\web\Controller
     public function getModelName()
     {
         if ($this->_model == null) {
-            throw new ExceptionCollection('В контроллере ' . get_called_class() . ' не задана модель ($_model)');
+            throw new Exception('В контроллере ' . get_called_class() . ' не задана модель ($_model)');
         }
 
         return $this->_model;
@@ -140,7 +138,7 @@ class Controller extends \yii\web\Controller
      * @return ActiveRecord
      * @throws \yii\web\NotFoundHttpException
      */
-    protected function findModel($id)
+    public function findModel($id)
     {
         $model = $this->getModelName();
         if (($model = $model::findOne($id)) !== null) {
