@@ -10,6 +10,8 @@ class UsersController extends andkon\yii2actions\Controller
     protected $_model = '\app\modules\users\models\Users';
 }
 
+goto http://site/index.php?r=users/ [index|update|create|view]
+
 в контроллерах больше не надо писать однообразные функции actionIndex, actionUpdate и тд.
 не требуется делать однообразные вьюшки на разные модели.
 При необходимости и экшены и вьюшки переопределяются путем их добавления.
@@ -47,8 +49,6 @@ class m000000_000000_users extends \andkon\yii2actions\Migration
 }
 </pre>
 ------------------
-
-goto http://site/index.php?r=users/ [index|update|create|view]
 
 TODO:
 create controller templates for gii
