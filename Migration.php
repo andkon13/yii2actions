@@ -27,28 +27,39 @@ class Migration extends \yii\db\Migration
      *
      * @return void
      */
+     /**
+     * переопределение safeUp
+     *
+     * @return bool
+     */
     public function safeUp()
     {
+
         $this->upTables();
         $this->upFields();
         $this->upKeys();
         $this->upVals();
 
-        parent::safeUp();
+        return (false !== parent::safeUp());
     }
 
     /**
      * переопределение safeDown
      *
-     * @return void
+     * @return bool
      */
     public function safeDown()
     {
-        parent::safeDown();
+        if (parent::safeDown()) {
+            $result = true;
+            $result = ($result && $this->downKeys());
+            $result = ($result && $this->downFields());
+            $result = ($result && $this->downTable());
 
-        $this->downKeys();
-        $this->downFields();
-        $this->downTable();
+            return $result;
+        }
+
+        return false;
     }
 
     /**
