@@ -50,7 +50,7 @@ class Migration extends \yii\db\Migration
      */
     public function safeDown()
     {
-        if (parent::safeDown()) {
+        if (false !== parent::safeDown()) {
             $result = true;
             $result = ($result && $this->downKeys());
             $result = ($result && $this->downFields());
