@@ -13,7 +13,7 @@ namespace andkon\yii2actions;
  *
  * @package andkon\yii2actions
  */
-class Migration extends \yii\db\Migration
+class Migration extends class Migration extends \webtoucher\migrate\components\Migration
 {
     protected $tablesPrefix = '';
     protected $tables = [];
