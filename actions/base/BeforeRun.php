@@ -10,12 +10,12 @@ namespace andkon\yii2actions\actions\base;
 
 trait BeforeRun
 {
+    protected $controllerAction = false;
+
     public function beforeRun()
     {
-        $actionName = 'action' . ucfirst($this->id);
-        if (method_exists($this->controller, $actionName)) {
-            return $this->controller->$actionName();
-        }
+        $actionName             = 'action' . ucfirst($this->id);
+        $this->controllerAction = method_exists($this->controller, $actionName);
 
         return parent::beforeRun();
     }
