@@ -25,9 +25,9 @@ class Index extends Action
         /** @var Controller $controller */
         $controller = $this->controller;
         if($this->controllerAction){
-            return $controller->actionCreate();
+            return $controller->actionIndex();
         }
-        
+
         $model      = $controller->getModelName();
         /** @var ActiveRecord $model */
         $model        = new $model();
