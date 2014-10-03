@@ -26,9 +26,9 @@ class Update extends Action
         /** @var Controller $controller */
         $controller = $this->controller;
         if($this->controllerAction){
-            return $controller->actionCreate();
+            return $controller->actionUpdate($id);
         }
-        
+
         $model      = $controller->getModelName();
         /** @var ActiveRecord $model */
         $model = new $model();
