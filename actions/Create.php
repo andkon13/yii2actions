@@ -28,7 +28,7 @@ class Create extends Action
         if($this->controllerAction){
             return $controller->actionCreate();
         }
-        
+
         $model      = $controller->getModelName();
         /** @var ActiveRecord $model */
         $model = new $model;
