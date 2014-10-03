@@ -22,7 +22,7 @@ class Delete extends Action
         /** @var Controller $controller */
         $controller = $this->controller;
         if($this->controllerAction){
-            return $controller->actionCreate();
+            return $controller->actionDelete($id);
         }
         
         $model      = $controller->getModelName();
