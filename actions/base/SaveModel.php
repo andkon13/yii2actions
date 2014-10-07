@@ -30,10 +30,6 @@ trait SaveModel
             $save = $model->save();
         }
 
-        if ($save) {
-            UsersFlash::setFlash('Запись успешно сохранена', UsersFlash::TYPE_SUCCESS);
-        }
-
         return $save;
     }
 }
