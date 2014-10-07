@@ -13,6 +13,7 @@ use andkon\yii2actions\actions\base\FindViews;
 use andkon\yii2actions\ActiveRecord;
 use andkon\yii2actions\Controller;
 use yii\base\Action;
+use yii\web\HttpException;
 
 class View extends Action
 {
@@ -32,7 +33,7 @@ class View extends Action
         $model = new $model();
         $model = $model->findOne(['id' => $id]);
         if (!$model) {
-            throw new \HttpException(404);
+            throw new HttpException(404);
         }
 
         $view = $this->getViewPath($model);
