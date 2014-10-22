@@ -170,7 +170,7 @@ class Migration extends \webtoucher\migrate\components\Migration
      *
      * @return string
      */
-    private function getFkName($key)
+    protected function getFkName($key)
     {
         $name = implode('_', array_merge($key['from'], $key['to']));
 
