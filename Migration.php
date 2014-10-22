@@ -212,4 +212,35 @@ class Migration extends \webtoucher\migrate\components\Migration
 
         return true;
     }
+    
+    /**
+     * Возвращает название внешнего ключа по таблице и
+     *
+     * @param string $table
+     * @param string $column
+     *
+     * @return string|null
+     * @throws Exception
+     * @throws \yii\base\NotSupportedException
+     */
+    protected function getFKExistName($table, $column)
+    {
+        $db = \Yii::$app->getDb();
+        preg_match('/dbname=(.+)/', $db->getSchema()->db->dsn, $m);
+        if (isset($m[1])) {
+            $schema = $m[1];
+        } else {
+            throw new Exception('scheme name not found');
+        }
+
+        $sql = "
+            SELECT CONSTRAINT_NAME
+            FROM information_schema.KEY_COLUMN_USAGE
+            WHERE TABLE_SCHEMA ='$schema' AND TABLE_NAME ='$table' AND
+            CONSTRAINT_NAME <>'PRIMARY' AND REFERENCED_TABLE_NAME is not null
+            and COLUMN_NAME = '$column'
+        ";
+
+        return $db->createCommand($sql)->queryScalar();
+    }
 }
