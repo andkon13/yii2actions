@@ -43,7 +43,7 @@ trait FindViews
         if (file_exists($formView . '.php')) {
             $formView = '/' . strtolower($model->formName()) . '/_form';
         } else {
-            $formView = false;
+            $formView = '_form';
         }
 
         $this->formViewPath = $formView;
