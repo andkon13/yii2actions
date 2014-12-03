@@ -15,20 +15,34 @@ use andkon\yii2actions\Controller;
 use yii\base\Action;
 use yii\web\HttpException;
 
+/**
+ * Class View
+ *
+ * @package andkon\yii2actions\actions
+ */
 class View extends Action
 {
     use FindViews;
     use BeforeRun;
 
+    /**
+     * @inheritdoc
+     *
+     * @param int $id
+     *
+     * @return string
+     * @throws HttpException
+     * @throws \yii\base\Exception
+     */
     public function run($id)
     {
         /** @var Controller $controller */
         $controller = $this->controller;
-        if($this->controllerAction){
+        if ($this->controllerAction) {
             return $controller->actionView($id);
         }
-        
-        $model      = $controller->getModelName();
+
+        $model = $controller->getModelName();
         /** @var ActiveRecord $model */
         $model = new $model();
         $model = $model->findOne(['id' => $id]);

@@ -14,7 +14,7 @@ use yii\web\NotFoundHttpException;
 class Controller extends \yii\web\Controller
 {
     /** @var null|string */
-    protected $_model = null;
+    public $model = null;
 
     /**
      * Инициализация
@@ -37,10 +37,10 @@ class Controller extends \yii\web\Controller
     protected function model($model_name = false)
     {
         if ($model_name) {
-            $this->_model = $model_name;
+            $this->model = $model_name;
         }
 
-        return $this->_model;
+        return $this->model;
     }
 
     /**
@@ -123,11 +123,11 @@ class Controller extends \yii\web\Controller
      */
     public function getModelName()
     {
-        if ($this->_model == null) {
-            throw new Exception('В контроллере ' . get_called_class() . ' не задана модель ($_model)');
+        if ($this->model == null) {
+            throw new Exception('В контроллере ' . get_called_class() . ' не задана модель ($model)');
         }
 
-        return $this->_model;
+        return $this->model;
     }
 
     /**

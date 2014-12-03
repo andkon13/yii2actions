@@ -15,20 +15,30 @@ use andkon\yii2actions\Controller;
 use yii\base\Action;
 use yii\data\ActiveDataProvider;
 
+/**
+ * Class Index
+ *
+ * @package andkon\yii2actions\actions
+ */
 class Index extends Action
 {
     use FindViews;
     use BeforeRun;
 
+    /**
+     * @inheritdoc
+     * @return string
+     * @throws \yii\base\Exception
+     */
     public function run()
     {
         /** @var Controller $controller */
         $controller = $this->controller;
-        if($this->controllerAction){
+        if ($this->controllerAction) {
             return $controller->actionIndex();
         }
 
-        $model      = $controller->getModelName();
+        $model = $controller->getModelName();
         /** @var ActiveRecord $model */
         $model        = new $model();
         $dataProvider = new ActiveDataProvider(

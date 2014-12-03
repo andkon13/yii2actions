@@ -28,7 +28,7 @@ class Migration extends \webtoucher\migrate\components\Migration
      *
      * @return void
      */
-     /**
+    /**
      * переопределение safeUp
      *
      * @return bool
@@ -115,9 +115,13 @@ class Migration extends \webtoucher\migrate\components\Migration
             $name = $this->getFkName($key);
             $key  = array_merge(['delete' => 'CASCADE', 'update' => 'NO ACTION'], $key);
             $this->addForeignKey(
-                $name, $key['from'][0], $key['from'][1],
-                $key['to'][0], $key['to'][1],
-                $key['delete'], $key['update']
+                $name,
+                $key['from'][0],
+                $key['from'][1],
+                $key['to'][0],
+                $key['to'][1],
+                $key['delete'],
+                $key['update']
             );
         }
 
@@ -212,7 +216,7 @@ class Migration extends \webtoucher\migrate\components\Migration
 
         return true;
     }
-    
+
     /**
      * Возвращает название внешнего ключа по таблице и
      *

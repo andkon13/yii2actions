@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 
-
 /**
  * @var yii\web\View                     $this
  * @var \andkon\yii2actions\ActiveRecord $model
@@ -10,7 +9,7 @@ use yii\helpers\Html;
  */
 $modelName = Yii::t('app', $model->formName());
 
-$this->title = 'Update ' . $model;
+$this->title                   = 'Update ' . $model;
 $this->params['breadcrumbs'][] = ['label' => $modelName, 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -18,10 +17,5 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?=
-    $this->render($formView, [
-        'model' => $model,
-    ])
-    ?>
-
+    <?= $this->render($formView, ['model' => $model]) ?>
 </div>

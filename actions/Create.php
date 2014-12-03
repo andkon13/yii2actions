@@ -15,21 +15,31 @@ use andkon\yii2actions\ActiveRecord;
 use andkon\yii2actions\Controller;
 use yii\base\Action;
 
+/**
+ * Class Create
+ *
+ * @package andkon\yii2actions\actions
+ */
 class Create extends Action
 {
     use FindViews;
     use SaveModel;
     use BeforeRun;
 
+    /**
+     * @inheritdoc
+     * @return string
+     * @throws \yii\base\Exception
+     */
     public function run()
     {
         /** @var Controller $controller */
         $controller = $this->controller;
-        if($this->controllerAction){
+        if ($this->controllerAction) {
             return $controller->actionCreate();
         }
 
-        $model      = $controller->getModelName();
+        $model = $controller->getModelName();
         /** @var ActiveRecord $model */
         $model = new $model;
         $post  = $controller->getPost($model->formName());

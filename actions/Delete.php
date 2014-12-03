@@ -13,19 +13,34 @@ use andkon\yii2actions\ActiveRecord;
 use andkon\yii2actions\Controller;
 use yii\base\Action;
 
+/**
+ * Class Delete
+ *
+ * @package andkon\yii2actions\actions
+ */
 class Delete extends Action
 {
     use BeforeRun;
 
+    /**
+     * @inheritdoc
+     *
+     * @param int $id
+     *
+     * @return \yii\web\Response
+     * @throws \Exception
+     * @throws \HttpException
+     * @throws \yii\base\Exception
+     */
     public function run($id)
     {
         /** @var Controller $controller */
         $controller = $this->controller;
-        if($this->controllerAction){
+        if ($this->controllerAction) {
             return $controller->actionDelete($id);
         }
-        
-        $model      = $controller->getModelName();
+
+        $model = $controller->getModelName();
         /** @var ActiveRecord $model */
         $model = new $model();
         $model = $model->findOne($id);

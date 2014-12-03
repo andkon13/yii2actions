@@ -8,9 +8,17 @@
 
 namespace andkon\yii2actions;
 
-
+/**
+ * Class ActiveRecord
+ *
+ * @package andkon\yii2actions
+ */
 class ActiveRecord extends \yii\db\ActiveRecord
 {
+    /**
+     * @inheritdoc
+     * @return bool
+     */
     public function beforeValidate()
     {
         if ($this->getIsNewRecord()) {
@@ -26,15 +34,39 @@ class ActiveRecord extends \yii\db\ActiveRecord
         return parent::beforeValidate();
     }
 
-    protected static function loadOrInit($attr)
+    /**
+     * Ищет модель по атрибутам или инициализирует новую с переданными атрибутами
+     *
+     * @param array $attributes
+     *
+     * @return ActiveRecord
+     */
+    protected static function findOrInit($attributes)
     {
         $class = get_called_class();
         /** @var ActiveRecord $model */
         $model = new $class();
-        $model = $model->load($attr);
+        $model = $model->load($attributes);
         if (!$model) {
             $model = new $class();
-            $model->setAttributes($attr);
+            $model->setAttributes($attributes);
+        }
+
+        return $model;
+    }
+
+    /**
+     * Ищет модель или Создает модель с переданными атрибутами
+     *
+     * @param array $attributes
+     *
+     * @return ActiveRecord
+     */
+    public static function findOrCreate($attributes)
+    {
+        $model = self::findOrInit($attributes);
+        if ($model->getIsNewRecord()) {
+            $model->save();
         }
 
         return $model;
@@ -45,7 +77,7 @@ class ActiveRecord extends \yii\db\ActiveRecord
      *
      * @return mixed|string
      */
-    function __toString()
+    public function __toString()
     {
         if ($this->hasAttribute('name')) {
             return $this->name;

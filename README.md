@@ -7,7 +7,7 @@ Uses:
 
 class UsersController extends andkon\yii2actions\Controller
 {
-    protected $_model = '\app\modules\users\models\Users';
+    protected $model = '\app\modules\users\models\Users';
 }
 
 goto http://site/index.php?r=users/ [index|update|create|view]

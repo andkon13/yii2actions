@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 
-
 /**
  * @var  yii\web\View                     $this
  * @var  \andkon\yii2actions\ActiveRecord $model
@@ -10,7 +9,7 @@ use yii\helpers\Html;
  */
 $modelName = Yii::t('app', $model->formName());
 
-$this->title = 'Create ' . $modelName;
+$this->title                   = 'Create ' . $modelName;
 $this->params['breadcrumbs'][] = ['label' => $modelName, 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -18,13 +17,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?
-
-    if ($formView) {
-        echo $this->render($formView, ['model' => $model]);
-    } else {
-        echo $this->render('_form', ['model' => $model]);
-    }
-    ?>
+<?php if ($formView) {
+    echo $this->render($formView, ['model' => $model]);
+} else {
+    echo $this->render('_form', ['model' => $model]);
+} ?>
 
 </div>
