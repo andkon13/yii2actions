@@ -38,22 +38,36 @@ class Index extends Action
             return $controller->actionIndex();
         }
 
-        $model = $controller->getModelName();
-        /** @var ActiveRecord $model */
-        $model        = new $model();
-        $dataProvider = new ActiveDataProvider(
-            [
-                'query' => $model::find(),
-            ]
-        );
-        $view         = $this->getViewPath($model);
+        $modelClass = $controller->getModelName();
+        if (class_exists($modelClass . 'Search')) {
+            $modelClass = $modelClass . 'Search';
+            /** @var ActiveRecord $model */
+            $model = new $modelClass();
+            if (method_exists($model, 'search')) {
+                $dataProvider = $model->search(\Yii::$app->request->queryParams);
+            }
+        }
+
+        if (!isset($dataProvider)) {
+            /** @var ActiveRecord $model */
+            $model        = new $modelClass();
+            $dataProvider = new ActiveDataProvider(
+                [
+                    'query' => $model::find(),
+                ]
+            );
+        }
+
+        $view       = $this->getViewPath($model);
+        $renderVars = [
+            'dataProvider' => $dataProvider,
+            'model'        => $model,
+            'searchModel'  => $model,
+        ];
 
         return $controller->render(
             $view,
-            [
-                'dataProvider' => $dataProvider,
-                'model'        => $model,
-            ]
+            $renderVars
         );
     }
 }
