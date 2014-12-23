@@ -68,7 +68,7 @@ class Migration extends \webtoucher\migrate\components\Migration
      *
      * @return bool
      */
-    private function upTables()
+    protected function upTables()
     {
         if (empty($this->tables)) {
             return true;
@@ -87,7 +87,7 @@ class Migration extends \webtoucher\migrate\components\Migration
      *
      * @return bool
      */
-    private function upFields()
+    protected function upFields()
     {
         if (empty($this->fields) || $this->table == null) {
             return true;
@@ -105,7 +105,7 @@ class Migration extends \webtoucher\migrate\components\Migration
      *
      * @return bool
      */
-    private function upKeys()
+    protected function upKeys()
     {
         if (empty($this->foreignKeys)) {
             return true;
@@ -133,7 +133,7 @@ class Migration extends \webtoucher\migrate\components\Migration
      *
      * @return bool
      */
-    private function upVals()
+    protected function upVals()
     {
         if (empty($this->vals)) {
             return true;
@@ -153,7 +153,7 @@ class Migration extends \webtoucher\migrate\components\Migration
      *
      * @return bool
      */
-    private function downKeys()
+    protected function downKeys()
     {
         if (empty($this->foreignKeys)) {
             return true;
@@ -186,7 +186,7 @@ class Migration extends \webtoucher\migrate\components\Migration
      *
      * @return bool
      */
-    private function downFields()
+    protected function downFields()
     {
         if (empty($this->fields) || $this->table == null) {
             return true;
@@ -204,7 +204,7 @@ class Migration extends \webtoucher\migrate\components\Migration
      *
      * @return bool
      */
-    private function downTable()
+    protected function downTable()
     {
         if (empty($this->tables)) {
             return true;
