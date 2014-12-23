@@ -43,10 +43,9 @@ class ActiveRecord extends \yii\db\ActiveRecord
      */
     protected static function findOrInit($attributes)
     {
+        /** @var \yii\db\ActiveRecord $class */
         $class = get_called_class();
-        /** @var ActiveRecord $model */
-        $model = new $class();
-        $model = $model->load($attributes);
+        $model = $class::findOne($attributes);
         if (!$model) {
             $model = new $class();
             $model->setAttributes($attributes);
