@@ -14,6 +14,7 @@ use andkon\yii2actions\actions\base\SaveModel;
 use andkon\yii2actions\ActiveRecord;
 use andkon\yii2actions\Controller;
 use yii\base\Action;
+use yii\web\HttpException;
 
 /**
  * Class Update
@@ -48,7 +49,7 @@ class Update extends Action
         $model = new $model();
         $model = $model->findOne(['id' => $id]);
         if (!$model) {
-            throw new \HttpException(404);
+            throw new HttpException(404);
         }
 
         $post = $controller->getPost($model->formName());
