@@ -41,7 +41,7 @@ class ActiveRecord extends \yii\db\ActiveRecord
      *
      * @return ActiveRecord
      */
-    protected static function findOrInit($attributes)
+    public static function findOrInit($attributes)
     {
         /** @var \yii\db\ActiveRecord $class */
         $class = get_called_class();
