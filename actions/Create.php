@@ -45,7 +45,7 @@ class Create extends Action
         $post  = $controller->getPost($model->formName());
         if ($post) {
             if ($this->saveModel($model, $post)) {
-                $controller->redirect($controller->createUrl('update', ['id' => $model->id]));
+                return $controller->redirect($controller->createUrl('update', ['id' => $model->id]));
             }
         }
 
