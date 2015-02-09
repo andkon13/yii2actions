@@ -21,13 +21,15 @@ class ActiveRecord extends \yii\db\ActiveRecord
      */
     public function beforeValidate()
     {
-        if ($this->getIsNewRecord()) {
-            if ($this->hasAttribute('created')) {
-                $this->setAttribute('created', date('Y-m-d H:i:s'));
-            }
-        } else {
-            if ($this->hasAttribute('updated')) {
-                $this->setAttribute('updated', date('Y-m-d H:i:s'));
+        if (!strpos($this->className(), 'Search')) {
+            if ($this->getIsNewRecord()) {
+                if ($this->hasAttribute('created')) {
+                    $this->setAttribute('created', date('Y-m-d H:i:s'));
+                }
+            } else {
+                if ($this->hasAttribute('updated')) {
+                    $this->setAttribute('updated', date('Y-m-d H:i:s'));
+                }
             }
         }
 
