@@ -8,6 +8,8 @@
 
 namespace andkon\yii2actions;
 
+use yii\db\Expression;
+
 /**
  * Class ActiveRecord
  *
