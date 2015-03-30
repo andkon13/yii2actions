@@ -41,7 +41,7 @@ trait FindViews
     {
         $formView = $this->controller->getViewPath() . '/_form';
         if (file_exists($formView . '.php')) {
-            $formView = '/' . strtolower($model->formName()) . '/_form';
+            $formView = str_replace(\Yii::$app->getBasePath(), '@app', $formView . '.php');
         } else {
             $formView = '_form';
         }
