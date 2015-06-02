@@ -9,7 +9,7 @@ use yii\helpers\Html;
  */
 $modelName = Yii::t('app', $model->formName());
 
-$this->title                   = 'Create ' . $modelName;
+$this->title                   = Yii::t('app', 'Create') . ' ' . $modelName;
 $this->params['breadcrumbs'][] = ['label' => $modelName, 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
