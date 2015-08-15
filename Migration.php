@@ -24,10 +24,96 @@ class Migration extends \webtoucher\migrate\components\Migration
     protected $vals = [];
 
     /**
-     * переопределение safeUp
-     *
      * @return void
      */
+    public function init()
+    {
+        parent::init();
+        $this->tables      = $this->setTables();
+        $this->fields      = $this->setFields();
+        $this->foreignKeys = $this->setForeignKeys();
+        $this->vals        = $this->setVals();
+    }
+
+    /**
+     * Назначает таблицы для их создания при UP/удалени при DOWN
+     * <code>
+     * [
+     *      'table1' =>
+     *      [
+     *          'id' => 'pk',
+     *          'name' => 'varchar(255)',
+     *          ...
+     *      ]
+     *];
+     * </code>
+     *
+     * @return array
+     */
+    public function setTables()
+    {
+        return [];
+    }
+
+    /**
+     * Устанавливает поля которые будт добавлены/удалены при up/down (необходтмо назначить $this->table)
+     * <code>
+     * [
+     *   'name' => 'varchar(255)',
+     *   'status' => 'int',
+     *   ...
+     * ]
+     * </code>
+     *
+     * @return array
+     */
+    public function setFields()
+    {
+        return [];
+    }
+
+    /**
+     * Устанавливает внешние ключи которые буут добавлены/удалены при up/down
+     * <code>
+     * [
+     *      [
+     *          'tableFrom', 't2_id',
+     *          'tableTo', 'id'
+     *      ],
+     *      [
+     *          'tableFrom2', 't3_id',
+     *          'tableTo1', 'id',
+     *          'delete' => 'CASCADE',// default
+     *          'update' => 'NO ACTION'// default
+     *      ],
+     * ]
+     * </code>
+     *
+     * @return array
+     */
+    public function setForeignKeys()
+    {
+        return [];
+    }
+
+    /**
+     * Устанавливает значения которые будут добавлены в БД (при откате не удаляются)
+     * <code>
+     * [
+     *      'table_name' =>
+     *      [
+     *          ['id' => 1, 'name' => 'xxx', 'status' => 1],
+     *          ['id' => 2, 'name' => 'yyy'],
+     *      ]
+     * ]
+     * </code>
+     * @return array
+     */
+    public function setVals()
+    {
+        return [];
+    }
+
     /**
      * переопределение safeUp
      *
