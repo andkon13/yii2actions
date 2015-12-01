@@ -3,7 +3,7 @@
     "description": "override default actions",
     "minimum-stability": "dev",
     "license": "proprietary",
-    "version": "0.1",
+    "version": "2.0",
     "authors": [
         {
             "name": "Andrey Konenkov",
@@ -14,8 +14,7 @@
         "php": ">=5.4.0"
     },
     "require-dev": {
-        "claudejanz/yii2-mygii": "dev-master",
-        "webtoucher/yii2-migrate": "v1.0.1"
+        "claudejanz/yii2-mygii": "dev-master"
     },
     "autoload": {
         "psr-4": {
