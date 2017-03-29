@@ -24,7 +24,9 @@ trait SaveModel
     protected function saveModel($model, $attributes)
     {
         $model->setAttributes($attributes);
-        if (method_exists($model, 'doSave')) {
+        if (method_exists($this->controller, 'doSave')) {
+            $save = $this->controller->doSave($model);
+        } elseif (method_exists($model, 'doSave')) {
             $save = $model->doSave();
         } else {
             $save = $model->save();
