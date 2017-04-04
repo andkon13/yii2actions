@@ -44,13 +44,14 @@ class Index extends Action
             /** @var ActiveRecord $model */
             $model = new $modelClass();
             if (method_exists($model, 'search')) {
-                $dataProvider = $model->search(\Yii::$app->request->queryParams);
+                $dataProvider = $model->search(\Yii::$app->getRequest()->getQueryParams());
             }
         }
 
         if (!isset($dataProvider)) {
             /** @var ActiveRecord $model */
-            $model        = new $modelClass();
+            $model = new $modelClass();
+            $model->load(\Yii::$app->getRequest()->getQueryParams());
             $dataProvider = new ActiveDataProvider(
                 [
                     'query' => $model::find(),
