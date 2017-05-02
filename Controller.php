@@ -8,6 +8,7 @@
 
 namespace andkon\yii2actions;
 
+use yii\base\Application;
 use yii\base\Exception;
 use yii\web\NotFoundHttpException;
 
@@ -109,7 +110,12 @@ class Controller extends \yii\web\Controller
      */
     public function createUrl($view, $param = array())
     {
-        $path  = $this->module->id . '/' . $this->id . '/' . $view;
+        if ($this->module instanceof Application) {
+            $path = $this->id . '/' . $view;
+        } else {
+            $path = $this->module->id . '/' . $this->id . '/' . $view;
+        }
+
         $param = array_merge([$path], $param);
         $url   = \Yii::$app->getUrlManager()->createUrl($param);
 
