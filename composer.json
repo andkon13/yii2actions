@@ -13,10 +13,6 @@
     "require": {
         "php": ">=5.4.0"
     },
-    "require-dev": {
-        "claudejanz/yii2-mygii": "dev-master",
-        "webtoucher/yii2-migrate": "v1.0.1"
-    },
     "autoload": {
         "psr-4": {
             "andkon\\yii2actions\\": ""
